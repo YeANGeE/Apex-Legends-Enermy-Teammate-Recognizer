@@ -1,0 +1,5 @@
+# Application versions recorded from the development environment.
+ultralytics==8.4.174
+Pillow==12.3.0
+av==19.0.1
+numpy==2.2.6

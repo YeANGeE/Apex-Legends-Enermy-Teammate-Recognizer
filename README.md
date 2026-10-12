@@ -1,4 +1,8 @@
+> **声明：本程序 90% 以上内容由 vibe coding + AI Agent 完成，不对兼容性和效果作任何保证，禁止用于非法用途。**
+
 # FPS Recorder
+
+WebUI 下载与安装说明：[GitHub Releases](https://github.com/YeANGeE/Apex-Legends-Enermy-Teammate-Recognizer/releases)。
 
 ## Current checkpoint (2026-10-11)
 

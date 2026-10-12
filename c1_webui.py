@@ -221,10 +221,11 @@ class DetectionEngine:
 class AppServer(ThreadingHTTPServer):
     daemon_threads = True
 
-    def __init__(self, address: tuple[str, int], engine: DetectionEngine) -> None:
+    def __init__(self, address: tuple[str, int], engine: DetectionEngine,
+                 enable_gallery: bool = True) -> None:
         super().__init__(address, RequestHandler)
         self.engine = engine
-        self.gallery = Gallery()
+        self.gallery = Gallery() if enable_gallery else None
         self.videos = VideoJobs(engine, OUTPUT_ROOT / "videos")
 
 
@@ -261,6 +262,10 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:
         route = self.path.split("?", 1)[0]
+        if (route == "/api/gallery" or route.startswith("/api/gallery/")
+                or route == "/gallery.html") and self.server.gallery is None:
+            self.send_error(HTTPStatus.NOT_FOUND, "Sample screening is disabled")
+            return
         if route.startswith("/api/video/"):
             parts = route.strip("/").split("/")
             try:
@@ -297,6 +302,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                     "model_name": MODEL_NAME,
                     "checkpoint": str(self.server.engine.checkpoint_path),
                     "gallery_version": 1,
+                    "gallery_enabled": self.server.gallery is not None,
                     "webui_version": WEBUI_VERSION,
                     "video_max_bytes": MAX_VIDEO_BYTES,
                 }
@@ -349,6 +355,9 @@ class RequestHandler(BaseHTTPRequestHandler):
                 remaining -= len(data)
 
     def do_POST(self) -> None:
+        if self.path.startswith("/api/gallery/") and self.server.gallery is None:
+            self.send_error(HTTPStatus.NOT_FOUND, "Sample screening is disabled")
+            return
         origin = self.headers.get("Origin")
         if origin and origin != "http://" + self.headers.get("Host", ""):
             self.send_json({"error": "只允许从本地 WebUI 提交。"}, HTTPStatus.FORBIDDEN)
@@ -410,6 +419,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=7860)
     parser.add_argument("--no-browser", action="store_true")
+    parser.add_argument("--no-gallery", action="store_true",
+                        help="关闭依赖本地标注数据的样本筛选，仅提供图片和视频检测")
     parser.add_argument("--self-test-image", type=Path)
     return parser.parse_args()
 
@@ -435,7 +446,7 @@ def main() -> None:
         )
         return
 
-    server = AppServer((args.host, args.port), engine)
+    server = AppServer((args.host, args.port), engine, enable_gallery=not args.no_gallery)
     url = f"http://{args.host}:{args.port}"
     print(f"WebUI：{url}")
     print(f"识别结果自动保存到：{OUTPUT_ROOT}")

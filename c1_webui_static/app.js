@@ -50,6 +50,9 @@ async function loadStatus() {
     const response = await fetch("/api/status", { cache: "no-store" });
     const status = await response.json();
     if (!response.ok) throw new Error(status.error || "模型状态不可用");
+    if (status.gallery_enabled === false) {
+      document.querySelector('a[href="/gallery.html"]').hidden = true;
+    }
     modelStatus.classList.add("ready");
     const version = `${status.model_name} · epoch ${status.checkpoint_epoch ?? "未知"}`;
     modelStatus.querySelector("span:last-child").textContent = `模型已就绪 · ${version}`;

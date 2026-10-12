@@ -57,3 +57,6 @@ c2_dataset/
 # Machine-specific diagnostics, device identities, and service logs
 diagnostics/**
 !diagnostics/c2_followup_011405.md
+
+# Built distribution archives
+dist/

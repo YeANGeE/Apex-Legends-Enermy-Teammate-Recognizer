@@ -1,5 +1,13 @@
 # 图片与视频检测 WebUI
 
+## Release 下载包
+
+Windows 源码运行包随附当前检测权重，下载地址为仓库 GitHub Releases。
+安装和启动流程见 `packaging/webui/README.md`。发布包使用 `--no-gallery`
+关闭依赖作者本地标注集的队友样本筛选；图片和视频检测入口保留。
+`python build_webui_release.py` 可从已提交的工作区生成 ZIP 和 SHA-256 文件，
+仅打包文件，不启动服务、训练或推理。
+
 当前默认模型：`runs/c1_yolo/day4_yolo26n_1280_joint_supplement_v1/weights/best.pt`。
 这是项目检查点选用的 C1 检测权重；视频功能不输出手柄动作。
 
