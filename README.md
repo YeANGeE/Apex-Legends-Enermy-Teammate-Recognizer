@@ -4,7 +4,7 @@
 
 # Apex Legends Enemy / Teammate Recognizer
 
-This is an experimental project for detecting enemies and teammates in images and offline videos. The project is a sub project of the Companion Gaming AI (CGA) of FPS games project, aims to provide company to players that are lack of teammates. It is currently paused at Stage 1 — Local Combat Policy. The detection candidates do not constitute a complete combat policy; active target following and sustained effective firing remain unfinished. Future stages will include completed version of character combat strategy models, character looting action models, overall combat models, and teammate voice command recognition models.
+This is an experimental project for detecting enemies and teammates in images and offline videos. The project is a sub project of the Companion Gaming AI (CGA) project for FPS games, aims to provide company to players that are lack of teammates. It is currently paused at Stage 1 — Local Combat Policy. The detection candidates do not constitute a complete combat policy; active target following and sustained effective firing remain unfinished. Future stages will include completed version of character combat strategy models, character looting action models, overall combat models, and teammate voice command recognition models.
 
 ## Download the WebUI
 
