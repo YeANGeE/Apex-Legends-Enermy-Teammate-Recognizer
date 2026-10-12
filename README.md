@@ -1,4 +1,4 @@
-**Language / 语言: [中文](README.md) | English**
+**Language / 语言: [中文](https://github.com/YeANGeE/Apex-Legends-Enermy-Teammate-Recognizer/blob/main/README/README.md) | English**
 
 > **Notice: More than 90% of this program was created through vibe coding + AI Agents. No guarantees are made regarding compatibility or effectiveness. Use for illegal purposes is prohibited.**
 
