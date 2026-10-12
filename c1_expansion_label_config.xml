@@ -1,0 +1,12 @@
+<View>
+  <Header value="Day1 训练集扩充：敌人检测"/>
+  <Text name="instructions" value="框出每个可确认敌人的可见身体，尽量贴合身体范围。队友和环境不要画框；只有队友或环境的清晰图片请选择可用并提交空标注。无法可靠判断敌人或范围时请选择不确定。"/>
+  <Image name="image" value="$image" zoom="true" zoomControl="true" rotateControl="false"/>
+  <RectangleLabels name="label" toName="image" strokeWidth="2">
+    <Label value="enemy" html="敌人" background="#E53935"/>
+  </RectangleLabels>
+  <Choices name="frame_quality" toName="image" choice="single-radio" showInline="true" required="true">
+    <Choice value="usable" html="可用"/>
+    <Choice value="uncertain" html="不确定"/>
+  </Choices>
+</View>

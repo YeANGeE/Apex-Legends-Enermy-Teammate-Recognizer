@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fps-recorder"
+version = "0.1.0"
+description = "Continuous DXGI + GameInput imitation-learning episode recorder"
+requires-python = ">=3.12"
+dependencies = [
+  "dxcam==0.3.0",
+  "numpy>=2.2",
+  "PyYAML>=6.0",
+  "psutil>=6.0",
+]
+
+[project.scripts]
+fps-recorder = "fps_recorder.main:main"
+fps-encoder-benchmark = "fps_recorder.benchmark_encoder:main"
+
+[tool.setuptools.packages.find]
+include = ["fps_recorder*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

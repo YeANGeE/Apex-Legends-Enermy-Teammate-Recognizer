@@ -1,0 +1,62 @@
+capture:
+  device_idx: 0
+  output_idx: 0
+  width: 1920
+  height: 1080
+  fps: 60
+  # Capture the complete DXGI surface and scale it before NVENC.
+  # Set center_crop for the lower-bandwidth fallback. An explicit region
+  # overrides this mode.
+  resolution_mode: full_frame_gpu_downscale
+  region: null
+  center_crop_if_needed: true
+  dxcam_buffer_frames: 32
+  output_color: BGR
+  # Avoid DXcam 0.3's costly OpenMP conversion on 4K frames.
+  numpy_parallel_threshold_pixels: 1000000000
+
+gameinput:
+  poll_hz: 2000
+  calibration_samples: 128
+  calibration_keep_best: 24
+  reconnect_seconds: 1.0
+
+xinput:
+  enabled: true
+  # Successful polls, NOT a promise of 4000 new hardware reports per second.
+  poll_hz: 4000
+  # null selects exactly one controller; multiple controllers require a slot.
+  user_index: null
+  batch_ms: 5
+
+episode:
+  pre_roll_seconds: 2.0
+  post_roll_seconds: 2.0
+  finalization_grace_ms: 100
+  output_dir: D:/FPS_AI_Dataset/Apex_YOLO_DAY4
+  encoder_queue_frames: 360
+  minimum_free_gib: 20
+
+encoder:
+  ffmpeg: ffmpeg
+  codec: av1_nvenc
+  output_fps: 60
+  preset: p5
+  tune: hq
+  rate_control: vbr
+  target_bitrate_mbps: 12
+  max_bitrate_mbps: 14
+  cq: 29
+  buffer_mbps: 24
+  gop_frames: 120
+  b_frames: 3
+  lookahead_frames: 20
+  spatial_aq: true
+  temporal_aq: true
+  aq_strength: 8
+  multipass: qres
+  pixel_format: bgr24
+
+status:
+  interval_seconds: 1.0
+  gpu_sample_seconds: 5.0

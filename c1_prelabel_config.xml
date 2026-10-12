@@ -1,0 +1,12 @@
+<View>
+  <Header value="C1 Enemy Detection — model-assisted review"/>
+  <Text name="instructions" value="Review every frame. Correct or delete wrong model boxes, add every missed enemy, and leave clear negative frames empty. Do not box teammates. Select usable for clear positive or negative frames; select uncertain only when the image cannot be judged reliably."/>
+  <Image name="image" value="$image" zoom="true" zoomControl="true" rotateControl="false"/>
+  <RectangleLabels name="label" toName="image" strokeWidth="2">
+    <Label value="enemy" background="#E53935"/>
+  </RectangleLabels>
+  <Choices name="frame_quality" toName="image" choice="single-radio" showInline="true" required="true">
+    <Choice value="usable"/>
+    <Choice value="uncertain"/>
+  </Choices>
+</View>

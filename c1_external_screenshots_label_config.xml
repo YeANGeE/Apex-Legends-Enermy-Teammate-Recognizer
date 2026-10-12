@@ -1,0 +1,23 @@
+<View>
+  <Header value="外部截图：三模型诊断（不参与训练）"/>
+  <Text name="preview_label" value="$preview_label"/>
+  <Text name="instructions" value="框出每个可确认敌人和队友的可见身体，沿用现有身体框规则，不框头顶ID、血条、头像、字幕、播放控件、纯隔墙图标或自己的第一人称手臂武器。小目标和遮挡目标也要标。不能凭没有ID就判敌人。无法确认任何人物的身份或范围时，整图选不确定；确实没有人物的清晰图选可用并提交空框。场景标签可多选，供分组诊断。"/>
+  <Image name="image" value="$image" zoom="true" zoomControl="true" rotateControl="false"/>
+  <RectangleLabels name="label" toName="image" strokeWidth="2">
+    <Label value="enemy" html="敌人" background="#E53935"/>
+    <Label value="teammate" html="队友" background="#2196F3"/>
+  </RectangleLabels>
+  <Choices name="frame_quality" toName="image" choice="single-radio" required="true" showInline="true">
+    <Choice value="usable" html="可用"/>
+    <Choice value="uncertain" html="不确定"/>
+  </Choices>
+  <Choices name="scene_tags" toName="image" choice="multiple" showInline="true">
+    <Choice value="small_target" html="小目标/远距离"/>
+    <Choice value="occlusion" html="遮挡/身体截断"/>
+    <Choice value="dark" html="暗光/低对比"/>
+    <Choice value="effects" html="烟雾/技能/枪口效果"/>
+    <Choice value="ads" html="开镜"/>
+    <Choice value="hud" html="字幕/播放控件干扰"/>
+    <Choice value="other" html="其他"/>
+  </Choices>
+</View>

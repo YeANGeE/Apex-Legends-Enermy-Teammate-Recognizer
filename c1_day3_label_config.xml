@@ -1,0 +1,23 @@
+<View>
+  <Header value="Day3 V4预标注复核：补漏、改敌我、统一身体框"/>
+  <Text name="preview_info" value="$preview_label"/>
+  <Text name="instructions" value="V4框是预标，不是真值。逐图检查所有可见人物：补漏掉的敌人和队友，修正认反；每人保留一个可见身体框，不包含头顶ID、血条、头像或自己的手臂武器。不要凭没有ID判敌人。仅框松紧差异时依照可见身体规则统一。预标为空也必须检查：清晰无人选可用并提交空框；人物身份或范围无法确认选不确定；菜单、结算或不想保留的画面选不保留。全部为未分组候选，复核后才安排数据用途。"/>
+  <Image name="image" value="$image" zoom="true" zoomControl="true" rotateControl="false"/>
+  <RectangleLabels name="label" toName="image" strokeWidth="2">
+    <Label value="enemy" html="敌人" background="#E53935"/>
+    <Label value="teammate" html="队友" background="#2196F3"/>
+  </RectangleLabels>
+  <Choices name="frame_quality" toName="image" choice="single-radio" required="true" showInline="true">
+    <Choice value="usable" html="可用"/>
+    <Choice value="uncertain" html="不确定"/>
+    <Choice value="discard" html="不保留"/>
+  </Choices>
+  <Choices name="scene_tags" toName="image" choice="multiple" showInline="true">
+    <Choice value="small_target" html="小目标"/>
+    <Choice value="occlusion" html="遮挡/身体截断"/>
+    <Choice value="dark" html="暗光"/>
+    <Choice value="effects" html="技能/枪口效果"/>
+    <Choice value="ads" html="开镜"/>
+    <Choice value="negative" html="确认无人物"/>
+  </Choices>
+</View>

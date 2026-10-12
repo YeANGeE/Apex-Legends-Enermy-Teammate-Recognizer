@@ -1,0 +1,2 @@
+# Use the existing .venv-yolo environment (torch, ultralytics and Pillow).
+av==19.0.1

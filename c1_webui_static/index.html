@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C1 敌人 / 队友检测工作台</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <nav class="page-nav"><a href="/" aria-current="page">YOLO 图片检测</a><a href="/gallery.html">队友样本筛选 · 779 张</a></nav>
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">Stage 1 · Local Combat Policy</p>
+        <h1>C1 敌人 / 队友检测工作台</h1>
+        <p class="lede">使用 YOLO26n Day4 补充训练版识别敌人和队友。橙色框表示敌人，蓝色框表示队友。支持图片检测及逐帧视频生成。</p>
+      </div>
+      <div class="status" id="modelStatus" aria-live="polite">
+        <span class="status-dot"></span>
+        <span>正在连接模型</span>
+      </div>
+    </header>
+
+    <section class="controls" aria-label="检测设置">
+      <div class="threshold-copy">
+        <span class="control-label">置信度阈值</span>
+        <strong id="thresholdValue">0.20</strong>
+        <p>降低阈值可找回更多目标；提高阈值可减少误检。</p>
+      </div>
+      <input id="threshold" type="range" min="0.05" max="0.95" value="0.20" step="0.05" aria-label="置信度阈值">
+      <button id="detectButton" type="button" disabled>检测敌人 / 队友</button>
+    </section>
+
+    <section class="workspace">
+      <article class="panel input-panel">
+        <div class="panel-heading">
+          <span>输入画面</span>
+          <span id="fileMeta" class="panel-meta">尚未选择图片</span>
+        </div>
+        <label class="drop-zone" id="dropZone" for="fileInput">
+          <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp,image/bmp">
+          <div class="reticle" aria-hidden="true"><span></span></div>
+          <strong>将截图拖到这里</strong>
+          <span>或点击选择 JPG、PNG、WEBP、BMP</span>
+        </label>
+        <img id="inputPreview" class="image-preview hidden" alt="待检测图片预览">
+      </article>
+
+      <article class="panel result-panel">
+        <div class="panel-heading">
+          <span>检测结果</span>
+          <a id="downloadLink" class="download hidden" download="c1_detection_result.jpg">保存结果</a>
+        </div>
+        <div id="resultEmpty" class="result-empty">
+          <span class="scan-line"></span>
+          <p>结果图将在检测完成后显示</p>
+        </div>
+        <img id="resultImage" class="image-preview hidden" alt="敌人和队友检测结果">
+      </article>
+    </section>
+
+    <section class="readout" aria-live="polite">
+      <div><span>检测数量</span><strong id="detectionCount">—</strong></div>
+      <div><span>模型前向耗时</span><strong id="inferenceTime">—</strong></div>
+      <div><span>检测流程耗时（不含上传及绘图）</span><strong id="predictionTime">—</strong></div>
+      <div class="model-version"><span>模型版本</span><strong id="modelEpoch">—</strong></div>
+      <div><span>处理设备</span><strong id="gpuName">—</strong></div>
+      <div class="saved-output"><span>自动保存位置</span><strong id="savedPath">尚未生成结果</strong></div>
+    </section>
+
+    <section class="detections" id="detectionsSection">
+      <div class="section-heading">
+        <h2>检测明细</h2>
+        <span>坐标为原始图片像素</span>
+      </div>
+      <div id="detectionList" class="detection-list">
+        <p class="empty-copy">尚无检测结果。</p>
+      </div>
+    </section>
+
+    <section class="detections" aria-label="视频检测">
+      <div class="section-heading"><h2>逐帧视频检测</h2><span>保留播放时间及原音轨 · 最大 2 GB</span></div>
+      <p class="lede">选择视频后点击生成，处理期间显示当前检测画面；完成后播放或下载带框 MP4。每帧独立检测，框跟随画面更新。</p>
+      <div class="video-controls">
+        <input id="videoInput" type="file" accept="video/*,.mkv,.mp4,.mov,.webm,.avi">
+        <button id="videoStart" type="button" disabled>生成带框视频</button>
+        <button id="videoCancel" type="button" disabled>取消处理</button>
+        <a id="videoDownload" class="download hidden" download="敌人队友检测.mp4">下载带框 MP4</a>
+      </div>
+      <p id="videoProgress" role="status" aria-live="polite">尚未选择视频 · 使用上方置信度阈值</p>
+      <progress id="videoMeter" max="100" value="0"></progress>
+      <img id="videoPreview" class="image-preview hidden" alt="正在处理的视频帧检测结果">
+      <video id="videoResult" class="image-preview hidden" controls preload="metadata"></video>
+      <p id="videoSavedPath" class="panel-meta"></p>
+    </section>
+    <p id="errorMessage" class="error hidden" role="alert"></p>
+  </main>
+  <script src="/app.js" defer></script>
+  <script src="/video.js" defer></script>
+</body>
+</html>

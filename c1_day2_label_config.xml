@@ -1,0 +1,20 @@
+<View>
+  <Header value="Day2 敌我识别标注"/>
+  <Text name="preview_info" value="$preview_label"/>
+  <Text name="instructions" value="框出每个可确认的敌人和队友的可见身体，不包含头顶ID、血条、文字或头像。不能只凭没有ID就判为敌人。清晰无人的图片选可用并提交空框；身份无法确定选不确定；不要的图片选不保留并提交，不需要删文件。训练场可攻击假人暂按敌人框用于目标定位，并选择训练场，后续与实战分开处理。"/>
+  <Image name="image" value="$image" zoom="true" zoomControl="true" rotateControl="false"/>
+  <RectangleLabels name="label" toName="image" strokeWidth="2">
+    <Label value="enemy" html="敌人" background="#E53935"/>
+    <Label value="teammate" html="队友" background="#2196F3"/>
+  </RectangleLabels>
+  <Choices name="frame_quality" toName="image" choice="single-radio" showInline="true" required="true">
+    <Choice value="usable" html="可用（保留）"/>
+    <Choice value="uncertain" html="不确定"/>
+    <Choice value="discard" html="不保留"/>
+  </Choices>
+  <Choices name="scene_type" toName="image" choice="single-radio" showInline="true" required="true">
+    <Choice value="training_range" html="训练场"/>
+    <Choice value="real_match" html="实战"/>
+    <Choice value="uncertain" html="场景不确定"/>
+  </Choices>
+</View>

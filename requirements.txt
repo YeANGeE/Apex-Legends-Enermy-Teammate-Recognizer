@@ -1,0 +1,5 @@
+dxcam==0.3.0
+numpy>=2.2
+PyYAML>=6.0
+psutil>=6.0
+

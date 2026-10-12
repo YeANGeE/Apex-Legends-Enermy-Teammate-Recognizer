@@ -1,0 +1,13 @@
+<View>
+  <Header value="Day1 敌我识别：核对敌人，补标队友"/>
+  <Text name="instructions" value="已有敌人框是历史人工标注的预填，仍需核对。框出每个可确认敌人和队友的可见身体，框不包含头顶ID或血条。没有人物的清晰图片提交空框并选可用；存在无法可靠判断身份或范围的人物时，整张选不确定。不可凭没有ID就判为敌人。不要框环境、头像、文字、血条或纯隔墙图标。"/>
+  <Image name="image" value="$image" zoom="true" zoomControl="true" rotateControl="false"/>
+  <RectangleLabels name="label" toName="image" strokeWidth="2">
+    <Label value="enemy" html="敌人" background="#E53935"/>
+    <Label value="teammate" html="队友" background="#2196F3"/>
+  </RectangleLabels>
+  <Choices name="frame_quality" toName="image" choice="single-radio" showInline="true" required="true">
+    <Choice value="usable" html="可用"/>
+    <Choice value="uncertain" html="不确定"/>
+  </Choices>
+</View>

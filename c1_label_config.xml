@@ -1,0 +1,12 @@
+<View>
+  <Header value="C1 Enemy Detection — calibration set"/>
+  <Text name="instructions" value="Draw one tight box around each visible enemy body. Leave genuine negative frames empty. Do not guess uncertain targets."/>
+  <Image name="image" value="$image" zoom="true" zoomControl="true" rotateControl="false"/>
+  <RectangleLabels name="label" toName="image" strokeWidth="2">
+    <Label value="enemy" background="#E53935"/>
+  </RectangleLabels>
+  <Choices name="frame_quality" toName="image" choice="single-radio" showInline="true" required="true">
+    <Choice value="usable"/>
+    <Choice value="uncertain"/>
+  </Choices>
+</View>

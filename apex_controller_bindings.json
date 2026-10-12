@@ -1,0 +1,33 @@
+{
+  "profile": "user_apex_custom_v1",
+  "source": "User supplied controller settings screenshot and explicit LB aim/RB fire confirmation",
+  "c2_action_schema": "rx_ry_rb_fire_lb_ads_v2",
+  "c2_output_order": ["rx", "ry", "rb", "lb"],
+  "bindings": {
+    "aim_down_sights_hold": "lb",
+    "attack": "rb",
+    "jump": "rt",
+    "crouch_hold": "lt",
+    "interact_pickup_reload": "x",
+    "cycle_weapon_holster_hold": "y",
+    "tactical_ability": "ls",
+    "ping_ping_wheel_hold": "b",
+    "sprint_toggle_zoom": "rs",
+    "melee": "a",
+    "health_shield_kit": "dpad_up",
+    "extra_character_action": "dpad_down",
+    "toggle_fire_mode": "dpad_left",
+    "equip_grenade": "dpad_right",
+    "map_toggle": "view",
+    "ultimate_ability": ["ls", "b"]
+  },
+  "semantics": {
+    "lb": "binary button; hold for aim",
+    "rb": "binary button; attack",
+    "rt": "analog trigger bound to jump; activation threshold not yet calibrated",
+    "lt": "analog trigger bound to hold crouch; activation threshold not yet calibrated",
+    "ls": "left stick press, not left stick axis",
+    "rs": "right stick press, not right stick axis"
+  },
+  "controller_output_implemented": false
+}

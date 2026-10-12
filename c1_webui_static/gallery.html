@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>队友样本筛选 · C1</title>
+  <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/gallery.css">
+</head>
+<body>
+<main class="shell gallery-shell">
+  <nav class="page-nav"><a href="/">YOLO 图片检测</a><a href="/gallery.html" aria-current="page">队友样本筛选 · 779 张</a></nav>
+  <header class="gallery-heading">
+    <div><p class="eyebrow">Stage 1 · Local Combat Policy</p><h1>只选需要补标的队友样本</h1>
+      <p class="lede">从左到右、从上到下，每行 4 张。勾选有队友或身份不确定的图片；点击「放大」检查远处人物。</p></div>
+    <span class="review-stamp">本轮仅初筛<br>不运行模型 · 不训练</span>
+  </header>
+  <section class="gallery-toolbar" aria-label="筛选工具">
+    <strong id="selectionCount">正在载入…</strong>
+    <label><input id="selectedOnly" type="checkbox"> 只看选中</label>
+    <label class="jump-label">定位编号 <input id="jumpId" type="number" min="1" max="779" placeholder="001"></label>
+    <button id="jumpButton" class="quiet-button" type="button">定位</button>
+    <button id="saveButton" class="quiet-button" type="button">保存选择</button>
+    <span id="saveStatus" role="status">选择会自动保存</span>
+  </section>
+  <p id="galleryError" class="error hidden" role="alert"></p>
+  <p class="gallery-note">编号固定，不因筛选改变。仅保存选择不会把未选中图片判为无队友；浏览完全部图片后再确认完成。</p>
+  <section id="gallery" class="gallery-grid" aria-label="带编号的图片列表"></section>
+  <p id="emptySelection" class="hidden empty-copy">还没有选中的图片。取消「只看选中」可继续浏览。</p>
+  <footer class="gallery-finish">
+    <div><h2>初筛完成后，只补标选中的图片</h2>
+      <label><input id="reviewedAll" type="checkbox"> 我已检查全部图片，未选中的图片确认为无队友。</label>
+      <p>保留全部旧敌人框与原训练/验证划分；新建精选标注项目，旧项目不会删除。确认前可随时修改选择。</p></div>
+    <button id="finishButton" type="button" disabled>生成选中图片标注项目</button>
+    <div id="finishResult" class="hidden" role="status"></div>
+  </footer>
+</main>
+<dialog id="zoomDialog" class="zoom-dialog">
+  <header><strong id="zoomTitle"></strong><button id="closeZoom" class="quiet-button" type="button">关闭 · Esc</button></header>
+  <div class="zoom-image-wrap"><img id="zoomImage" alt="放大的游戏截图"></div>
+  <footer><button id="previousImage" class="quiet-button" type="button">上一张 ←</button>
+    <label><input id="zoomSelected" type="checkbox"> 选中：有队友 / 身份不确定</label>
+    <button id="nextImage" class="quiet-button" type="button">下一张 →</button></footer>
+</dialog>
+<script src="/gallery.js" defer></script>
+</body></html>
